@@ -1,0 +1,7 @@
+project: pulsar-rs
+target: message-codec
+
+cmds:
+  - cmd: /message_codec
+  - cmd: /message_codec_no_inst @@
+    libfuzzer: false
