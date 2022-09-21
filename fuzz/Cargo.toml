@@ -1,0 +1,30 @@
+[package]
+name = "pulsar-fuzz"
+version = "0.0.0"
+publish = false
+edition = "2021"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+libfuzzer-sys = "0.4"
+bytes = "*"
+tokio-util = { version = "*", features = ["codec"] }
+asynchronous-codec = "*"
+
+[dependencies.pulsar]
+path = ".."
+
+# Prevent this from interfering with workspaces
+[workspace]
+members = ["."]
+
+[profile.release]
+debug = 1
+
+[[bin]]
+name = "message_codec"
+path = "fuzz_targets/message_codec.rs"
+test = false
+doc = false
